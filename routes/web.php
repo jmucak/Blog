@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Ruta koja kreira postove
+Route::get('/post/create', 'PostController@create')->name('post.create');
+Route::post('/post/store', 'PostController@store')->name('post.store');
