@@ -2,22 +2,14 @@
 
 @section('content')
 
-@if(count($errors) > 0)
-    <ul class="list-group">
-        @foreach($errors->all() as $error)
-            <li class="list-group-item text-danger">
-                {{ $error }}
-            </li>
-        @endforeach
-    </ul>
-@endif
+@include('inc.errors')
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2>Create New Post</h2>
+<div class="card">
+    <div class="card-title">
+        <h2 class="text-center mt-2">Create New Post</h2>
     </div>
 
-    <div class="panel-body">
+    <div class="card-body">
         <form action="/post/store" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }} <!-- upisuje se kako bi laravel znao da se submit iz aplikacije, a ne sa treće strane -->
             

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -24,7 +31,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('categories.create');
     }
 
     /**
@@ -35,7 +43,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name' => 'required'
+        ));
+
+        $category = new Category();
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect()->route('categories');
     }
 
     /**
@@ -55,9 +72,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        //
+        
+        $category = Category::find($id);
+
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -67,9 +87,14 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('categories');
     }
 
     /**
@@ -78,8 +103,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        return redirect()->route('categories');
     }
 }
