@@ -13,15 +13,21 @@
                 <th>Delete Permanately</th>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @if($posts->count() > 0)
+                    @foreach ($posts as $post)
+                        <tr>
+                            <td><img src="{{ $post->featured }}" alt="{{ $post->title }}" witdh="100px" height="50px"></td>
+                            <td>{{ $post->title }}</td>
+                            <td>Edit</td>
+                            <td><a href="{{ route('post.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a></td>
+                            <td><a href="{{ route('post.kill', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a></td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td><img src="{{ $post->featured }}" alt="{{ $post->title }}" witdh="100px" height="50px"></td>
-                        <td>{{ $post->title }}</td>
-                        <td>Edit</td>
-                        <td><a href="{{ route('post.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a></td>
-                        <td><a href="{{ route('post.kill', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a></td>
+                        <th colspan="5" class="text-center">No trashed posts</th>
                     </tr>
-                @endforeach
+                @endif
             </tbody>
         </table>
     </div>
