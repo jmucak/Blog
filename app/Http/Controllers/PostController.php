@@ -134,8 +134,30 @@ class PostController extends Controller
 
         $posts = Post::onlyTrashed()->get();
 
+        // onlyTrashed() -> vraća samo trashed iz tablice -> ugrađena funkcija u laravelu
+
         //dd($posts);
 
         return view('posts.trashed')->with('posts', $posts);
+    }
+
+    public function kill($id) {
+        
+        $post = Post::withTrashed()->where('id', $id)->first();
+
+        //dd($post);
+        // first() umjesto get()
+        // get() vraća kolekciju
+        /* 
+            withTrashed() -> ugrađena funkcija u laravelu
+            all()-> vraće sve iz tablice osim trashed
+        */
+
+        $post->forceDelete();
+
+        // forceDelete() -> ugrađena funkcija laravela, forca brisanje iz tablice (potrebno jer koristim softDeletes)
+
+        return redirect()->back();
+
     }
 }
