@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post/create', 'PostController@create')->name('post.create');
 Route::post('/post/store', 'PostController@store')->name('post.store');
 Route::get('/posts', 'PostController@index')->name('posts');
+Route::get('/posts/trashed', 'PostController@trashed')->name('posts.trashed');
+Route::get('/post/delete/{id}', 'PostController@destroy')->name('post.delete');
 
 // Ruta Category
 Route::get('/category/create', 'CategoryController@create')->name('category.create');

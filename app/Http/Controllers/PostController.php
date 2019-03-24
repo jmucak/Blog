@@ -121,8 +121,21 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect()->back();
+    }
+
+    public function trashed() {
+
+        $posts = Post::onlyTrashed()->get();
+
+        //dd($posts);
+
+        return view('posts.trashed')->with('posts', $posts);
     }
 }
