@@ -69,10 +69,11 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'featured' => 'uploads/posts/' . $featured_new_name,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'slug' => str_slug($request->title) // ugrađena laravel funkcija za generiranje slugova
         ));
 
-        
+        return redirect()->back();
 
         //dd($request->all());
     }
