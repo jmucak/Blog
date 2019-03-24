@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Ruta koja kreira postove
 Route::get('/post/create', 'PostController@create')->name('post.create');
 Route::post('/post/store', 'PostController@store')->name('post.store');
+Route::get('/posts', 'PostController@index')->name('posts');
 
 // Ruta Category
 Route::get('/category/create', 'CategoryController@create')->name('category.create');
