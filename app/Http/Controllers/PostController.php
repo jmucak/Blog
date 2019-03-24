@@ -98,9 +98,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, $id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('posts.edit')->with('post', $post)->with('categories', $categories);
     }
 
     /**
@@ -110,9 +113,34 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post, $id)
     {
-        //
+
+        $this->validate($request, array(
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ));
+
+        $post = Post::find($id);
+
+        if($request->hasFile('featured')) { // hasFile - laravel funkcija, provjerava imali datoteke
+
+            $featured = $request->featured;
+            $featured_new_name = time() . $featured->getClientOriginalName();
+
+            $featured->move('uploads/posts', $featured_new_name);
+
+            $post->featured = 'uploads/posts/' . $featured_new_name;
+        }
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->category_id = $request->category_id;
+
+        $post->save();
+
+        return redirect()->route('posts');
     }
 
     /**

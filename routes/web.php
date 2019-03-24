@@ -27,6 +27,8 @@ Route::get('/posts/trashed', 'PostController@trashed')->name('posts.trashed');
 Route::get('/posts/kill/{id}', 'PostController@kill')->name('post.kill');
 Route::get('/posts/restore/{id}', 'PostController@restore')->name('post.restore');
 Route::get('/post/delete/{id}', 'PostController@destroy')->name('post.delete');
+Route::get('/post/edit/{id}', 'PostController@edit')->name('post.edit');
+Route::post('/post/update/{id}', 'PostController@update')->name('post.update');
 
 // Ruta Category
 Route::get('/category/create', 'CategoryController@create')->name('category.create');
