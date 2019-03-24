@@ -54,6 +54,7 @@ Route::get('/user/create', 'UsersController@create')->name('user.create');
 Route::post('/user/store', 'UsersController@store')->name('user.store');
 Route::get('/user/admin/{id}', 'UsersController@admin')->name('user.admin');
 Route::get('/user/notAdmin/{id}', 'UsersController@notAdmin')->name('user.notAdmin');
+Route::get('/user/delete/{id}', 'UsersController@destroy')->name('user.delete');
 
 // User Profile
 Route::get('/user/profile', 'ProfilesController@index')->name('user.profile');

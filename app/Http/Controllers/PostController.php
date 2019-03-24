@@ -39,7 +39,7 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        if($categories->count() == 0) {
+        if($categories->count() == 0 || $tags->count() == 0) {
 
             
             return redirect()->back();
