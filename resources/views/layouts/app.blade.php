@@ -138,6 +138,8 @@
                             <li class="list-group-item"> <a href="{{ route('category.create') }}">Create New Category</a></li>
                             <li class="list-group-item"> <a href="{{ route('posts') }}">All Posts</a></li>
                             <li class="list-group-item"> <a href="{{ route('posts.trashed') }}">All Trahed Posts</a></li>
+                            <li class="list-group-item"> <a href="{{ route('tags') }}">Tags</a></li>
+                            <li class="list-group-item"> <a href="{{ route('tag.create') }}">Create New Tag</a></li>
                         </ul>
                     </div>
                     @endauth

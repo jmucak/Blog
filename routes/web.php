@@ -37,3 +37,12 @@ Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
 Route::get('/category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
 Route::post('/category/update/{id}', 'CategoryController@update')->name('category.update');
+
+// Ruta Tags
+
+Route::get('/tags', 'TagController@index')->name('tags');
+Route::get('/tag/edit/{id}', 'TagController@edit')->name('tag.edit');
+Route::post('/tag/update/{id}', 'TagController@update')->name('tag.update');
+Route::get('/tag/delete/{id}', 'TagController@destroy')->name('tag.delete');
+Route::get('/tag/create', 'TagController@create')->name('tag.create');
+Route::post('/tag/store', 'TagController@store')->name('tag.store');
