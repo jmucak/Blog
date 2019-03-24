@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -31,7 +32,9 @@ class PostController extends Controller
     {
         // vrati create view
 
-        return view('posts.create');
+        $categories = Category::all();
+
+        return view('posts.create')->with('categories', $categories);
     }
 
     /**
@@ -45,8 +48,27 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|max:255',
             'featured' => 'required|image',
-            'content' => 'required'
+            'content' => 'required',
+            'category_id' => 'required'
         ));
+
+        //$featured = $request->featured; -> on je to napisao
+        $featured = request('featured');
+        $featured_new_name = time().$featured->getClientOriginalName();
+        $featured->move('uploads/posts', $featured_new_name);
+
+        //$post = new Post();
+
+        $post = Post::create(array(
+            'title' => $request->title,
+            'content' => $request->content,
+            'featured' => 'uploads/posts/' . $featured_new_name,
+            'category_id' => $request->category_id
+        ));
+
+        
+
+        //dd($request->all());
     }
 
     /**

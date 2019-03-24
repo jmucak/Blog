@@ -107,7 +107,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        $category->delete();
+        $category->delete(); 
 
         return redirect()->route('categories');
     }
