@@ -142,10 +142,17 @@
                             <li class="list-group-item"> <a href="{{ route('tag.create') }}">Create New Tag</a></li>
                         </ul>
                     </div>
-                    @endauth
+
                     <div class="col-lg-8">
                         @yield('content')
                     </div>
+
+                    @else
+
+                    <div class="col-lg-12">
+                        @yield('content')
+                    </div>
+                    @endauth
                 </div>
             </div>
         </main>
