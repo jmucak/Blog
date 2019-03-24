@@ -34,6 +34,12 @@ class PostController extends Controller
 
         $categories = Category::all();
 
+        if($categories->count() == 0) {
+
+            
+            return redirect()->back();
+        }
+
         return view('posts.create')->with('categories', $categories);
     }
 
