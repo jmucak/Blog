@@ -25,6 +25,7 @@ Route::post('/post/store', 'PostController@store')->name('post.store');
 Route::get('/posts', 'PostController@index')->name('posts');
 Route::get('/posts/trashed', 'PostController@trashed')->name('posts.trashed');
 Route::get('/posts/kill/{id}', 'PostController@kill')->name('post.kill');
+Route::get('/posts/restore/{id}', 'PostController@restore')->name('post.restore');
 Route::get('/post/delete/{id}', 'PostController@destroy')->name('post.delete');
 
 // Ruta Category
