@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -36,6 +37,7 @@ class PostController extends Controller
         // vrati create view
 
         $categories = Category::all();
+        $tags = Tag::all();
 
         if($categories->count() == 0) {
 
@@ -43,7 +45,7 @@ class PostController extends Controller
             return redirect()->back();
         }
 
-        return view('posts.create')->with('categories', $categories);
+        return view('posts.create')->with('categories', $categories)->with('tags', $tags);
     }
 
     /**
@@ -58,7 +60,8 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'featured' => 'required|image',
             'content' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'tags' => 'required'
         ));
 
         //$featured = $request->featured; -> on je to napisao
@@ -75,6 +78,8 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'slug' => str_slug($request->title) // ugrađena laravel funkcija za generiranje slugova
         ));
+
+        $post->tags()->attach($request->tags);
 
         return redirect()->back();
 
@@ -102,8 +107,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('posts.edit')->with('post', $post)->with('categories', $categories);
+        return view('posts.edit')->with('post', $post)->with('categories', $categories)->with('tags', $tags);
     }
 
     /**
@@ -139,6 +145,8 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
 
         $post->save();
+
+        $post->tags()->sync($request->tags); //obrisat će sve tagove i dodati nove ->edit
 
         return redirect()->route('posts');
     }
