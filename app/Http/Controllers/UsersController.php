@@ -51,7 +51,8 @@ class UsersController extends Controller
         ));
 
         $profile = Profile::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'avatar' => 'uploads/avatars/avatar.jpg'
         ]);
 
         return redirect()->route('users');
@@ -100,5 +101,23 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function admin($id) {
+
+        $user = User::find($id);
+        $user->admin = 1;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function notAdmin($id) {
+
+        $user = User::find($id);
+        $user->admin = 0;
+        $user->save();
+
+        return redirect()->back();
     }
 }
