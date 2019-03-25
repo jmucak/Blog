@@ -69,3 +69,4 @@ Route::post('/settings/update', 'SettingsController@update')->name('settings.upd
 
 Route::get('/{slug}', 'FrontEndController@singlePost')->name('post.single');
 Route::get('/category/{id}', 'FrontEndController@category')->name('category.single');
+Route::get('/tag/{id}', 'FrontEndController@tag')->name('tag.single');
