@@ -62,3 +62,7 @@ Route::post('/user/profile/update', 'ProfilesController@update')->name('user.pro
 
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/update', 'SettingsController@update')->name('settings.update');
+
+// FrontEnd Controller
+
+Route::get('/{slug}', 'FrontEndController@singlePost')->name('post.single');

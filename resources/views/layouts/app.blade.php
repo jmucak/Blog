@@ -114,7 +114,5 @@
             </div>
         </main>
     </div>
-    @yield('scripts')
-    @include('layouts.footer')
 </body>
 </html>

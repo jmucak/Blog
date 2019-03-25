@@ -24,4 +24,14 @@ class FrontEndController extends Controller
 
         return view('index')->with('page_title', $page_title)->with('categories', $categories)->with('first_post', $first_post)->with('second_post', $second_post)->with('third_post', $third_post)->with('laravel', $laravel)->with('wordpress', $wordpress)->with('laravel_posts', $laravel_posts)->with('wordpress_posts', $wordpress_posts)->with('settings', $settings);
     }
+
+    public function singlePost($slug) {
+
+        $post = Post::where('slug', $slug)->first();
+        $categories = Category::take(5)->get();
+        $settings = Setting::first();
+        $page_title = Setting::first()->site_name;
+
+        return view('single')->with('post', $post)->with('title', $post->title)->with('categories', $categories)->with('settings', $settings)->with('page_title', $page_title);
+    }
 }
