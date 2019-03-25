@@ -59,3 +59,8 @@ Route::get('/user/delete/{id}', 'UsersController@destroy')->name('user.delete');
 // User Profile
 Route::get('/user/profile', 'ProfilesController@index')->name('user.profile');
 Route::post('/user/profile/update', 'ProfilesController@update')->name('user.profile.update');
+
+// Settings
+
+Route::get('/settings', 'SettingsController@index')->name('settings');
+Route::post('/settings/update', 'SettingsController@update')->name('settings.update');
