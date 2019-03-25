@@ -10,7 +10,7 @@ class Post extends Model
     use SoftDeletes;
 
     // Add title to the fillable array in your model Post, to allow saving through create and massive methods
-    protected $fillable = ['title', 'content', 'category_id', 'featured', 'slug'];
+    protected $fillable = ['title', 'content', 'category_id', 'featured', 'slug', 'user_id'];
 
     public function getFeaturedAttribute($featured) {
 
@@ -29,5 +29,10 @@ class Post extends Model
     public function tags() {
 
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function user() {
+
+        return $this->belongsTo(User::class);
     }
 }

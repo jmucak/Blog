@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Category;
@@ -76,7 +77,8 @@ class PostController extends Controller
             'content' => $request->content,
             'featured' => 'uploads/posts/' . $featured_new_name,
             'category_id' => $request->category_id,
-            'slug' => str_slug($request->title) // ugrađena laravel funkcija za generiranje slugova
+            'slug' => str_slug($request->title), // ugrađena laravel funkcija za generiranje slugova
+            'user_id' => Auth::id()
         ));
 
         $post->tags()->attach($request->tags);
