@@ -80,9 +80,6 @@
 </div>
 
 
-
-<!-- Footer -->
-
 <!-- Footer -->
 
 <footer class="footer" id="site-footer">
