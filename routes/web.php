@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FrontEndController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,3 +68,4 @@ Route::post('/settings/update', 'SettingsController@update')->name('settings.upd
 // FrontEnd Controller
 
 Route::get('/{slug}', 'FrontEndController@singlePost')->name('post.single');
+Route::get('/category/{id}', 'FrontEndController@category')->name('category.single');

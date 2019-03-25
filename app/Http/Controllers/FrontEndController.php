@@ -36,4 +36,13 @@ class FrontEndController extends Controller
 
         return view('single')->with('post', $post)->with('title', $post->title)->with('categories', $categories)->with('settings', $settings)->with('page_title', $page_title)->with('next', Post::find($next_id))->with('prev', Post::find($prev_id));
     }
+
+    public function category($id) {
+
+        $category = Category::find($id);
+        $categories = Category::take(5)->get();
+        $settings = Setting::first();
+
+        return view('category')->with('category', $category)->with('title', $category->name)->with('settings', $settings)->with('categories', $categories);
+    }
 }
